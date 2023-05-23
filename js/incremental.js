@@ -411,6 +411,10 @@
             onClick() {
                 player.i.currentdisplay = new Decimal(1) //Each number is assinged to its corresponding realm
             },
+            tooltip() {
+                return "<h5>The creator realm. The realm above all realms, yet they don't know we exist. They created all of us using their imaginations and placed us into their stories. Meta-Beings, or real humans live in this world. They do not know their fantasies are living in the realms below..."
+            },
+            style: { "background-color": "#EC7063", }
         },
         22: {
             title() { return "<img src='resources/symbolhigh.png' style='width:calc(80%);height:calc(80%);margin:10%'></img>" },
@@ -418,6 +422,10 @@
             onClick() {
                 player.i.currentdisplay = new Decimal(2)
             },
+            tooltip() {
+                return "<h5>The higher plane. The god realm. All gods live in this realm. After the five-way war, they organized and their job is to do one thing. Keep peace. However, they have not been doing a very good job. They have been fighting back the other realms who threatened them. Other than keeping peace, they also recruit new gods."
+            },
+            style: { "background-color": "#F5B041", }
         },
         23: {
             title() { return "<img src='resources/symboldeath.png' style='width:calc(80%);height:calc(80%);margin:10%'></img>" },
@@ -425,6 +433,10 @@
             onClick() {
                 player.i.currentdisplay = new Decimal(3)
             },
+            tooltip() {
+                return "<h5>The death realm consists of three parts: Heaven, Hell, and Purgatory. Heaven is where all the do-gooders go. It's nothing special, but it's just bliss and harmony. Hell is like hell. All the sinners go there. And purgatory is just nothing. Those who equal amounts of good and bad go there."
+            },
+            style: { "background-color": "#F1C40F", }
         },
         24: {
             title() { return "<img src='resources/symboldimension.png' style='width:calc(80%);height:calc(80%);margin:10%'></img>" },
@@ -432,6 +444,10 @@
             onClick() {
                 player.i.currentdisplay = new Decimal(4)
             },
+            tooltip() {
+                return "<h5>The dimensional realm is the largest realm in the multiverse, by a wide margin. It consists of every real, fictional, abstract, complex, crazy world out there. You take refuge in the dimensional realm."
+            },
+            style: { "background-color": "#27AE60", }
         },
         25: {
             title() { return "<img src='resources/symbolbackrooms.png' style='width:calc(80%);height:calc(80%);margin:10%'></img>" },
@@ -439,6 +455,10 @@
             onClick() {
                 player.i.currentdisplay = new Decimal(5)
             },
+            tooltip() {
+                return "<h5>The backrooms is worse than hell. Many people have noclipped here, and trust me. It's not fun. People who enter the backrooms usually die within 10 minutes, but others keep exploring. It consists of quintillions of levels which make up the entire realm."
+            },
+            style: { "background-color": "#2980B9", }
         },
         26: {
             title() { return "<img src='resources/symbolvoid.png' style='width:calc(80%);height:calc(80%);margin:10%'></img>" },
@@ -446,6 +466,10 @@
             onClick() {
                 player.i.currentdisplay = new Decimal(6)
             },
+            tooltip() {
+                return "<h1 class=glitch-text data-text=Glitchy Text>THE VOID IS TOO STRONG</h1>"
+            },
+            style: { "background-color": "#9B59B6", }
         },
         27: {
             title() { return "Deposit ALL of your mods to the Creator Realm." },
@@ -454,6 +478,9 @@
             onClick() {
                 player.i.creatormods = player.i.creatormods.add(player.i.mods)
                 player.i.mods = new Decimal(0)
+            },
+            tooltip() {
+                return "<h5>There is a border seperating the five other realms and the creator realm. It is called the fourth wall. Us from the other realms can break this wall with ease, but the meta-beings above can never do it. However, we cannot physically permeate this wall. We can only see through it."
             },
         },
         28: {
@@ -464,6 +491,9 @@
                 player.i.highmods = player.i.highmods.add(player.i.mods)
                 player.i.mods = new Decimal(0)
             },
+            tooltip() {
+                return "<h5>The higher plane recruits new gods by making prophecies. These prophecies belong to chosen ones, who can go on amazing quests and then, become a god. Many heroes are created and they strive to protect the multiverse from evil forces."
+            },
         },
         29: {
             title() { return "Deposit ALL of your mods to the Death Realm." },
@@ -472,6 +502,9 @@
             onClick() {
                 player.i.deathmods = player.i.deathmods.add(player.i.mods)
                 player.i.mods = new Decimal(0)
+            },
+            tooltip() {
+                return "<h5>However, the devils are actually friends with the angels. They keep the whole realm stable, and make sure everyone is placed where they belong. They teamed up with the higher plane of existence to keep peace across the multiverse, but you know what happened next."
             },
         },
         30: {
@@ -482,6 +515,9 @@
                 player.i.dimensionalmods = player.i.dimensionalmods.add(player.i.mods)
                 player.i.mods = new Decimal(0)
             },
+            tooltip() {
+                return "<h5>It is said that pre-split entities still exist in inter-universal space called sentients. These entities can build universes using their own energy. Sentiental energy is REALLY POWERFUL. It can break the laws of physics and is SOMETHING TO NOT BE PLAYED AROUND WITH."
+            },
         },
         31: {
             title() { return "Deposit ALL of your mods to the Backrooms." },
@@ -490,6 +526,9 @@
             onClick() {
                 player.i.backroomsmods = player.i.backroomsmods.add(player.i.mods)
                 player.i.mods = new Decimal(0)
+            },
+            tooltip() {
+                return "<h5>People have been trying for years to find an exit to the backrooms. But there is only one way, but the person who escaped doesn't want to talk about it for some reason."
             },
         },
         32: {
@@ -500,6 +539,10 @@
                 player.i.voidmods = player.i.voidmods.add(player.i.mods)
                 player.i.mods = new Decimal(0)
             },
+            tooltip() {
+                return "<h1 class=glitch-text data-text=Glitchy Text>YOU ARE TOO WEAK TO KNOW</h1>"
+            },
+            style: { "background-color": "#9B59B6", }
         },
     },
     upgrades: {
