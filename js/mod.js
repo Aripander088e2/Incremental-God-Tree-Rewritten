@@ -3,7 +3,7 @@
 	id: "incrementalgodtree",
 	author: "Icecreamdude",
 	pointsName: "points",
-	modFiles: ["incremental.js", "tree.js"],
+	modFiles: ["incremental.js", "achievements.js", "tree.js"],
 
 	discordName: "Incremental God Tree Server",
 	discordLink: "https://discord.gg/mCxvGNTS",

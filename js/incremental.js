@@ -207,6 +207,7 @@
 
         if (player.i.codeexperience.lt(1e12)) player.i.codeexperienceeffect = player.i.codeexperience.pow(0.15).mul(8)
         if (player.i.codeexperience.gt(1e12)) player.i.codeexperienceeffect = effectsoftcapbase.add(player.i.codeexperience.sub(1e12).pow(0.05))
+        if (player.i.codeexperience.gt(1e60)) player.i.codeexperienceeffect = new Decimal(1500)
 
         player.i.programs = player.i.programs.add(player.i.programspersecond.mul(delta))
         player.i.programspersecond = buyableEffect("i", 28)
@@ -256,6 +257,16 @@
         player.i.dimensionalmodseffect = player.i.dimensionalmods.pow(0.8).add(1) //Crypto Dimensions
         player.i.backroomsmodseffect = player.i.backroomsmods.pow(0.3).add(1) //Programs
         player.i.voidmodseffect = player.i.voidmods.pow(0.25).add(1) //Code Exp
+
+        if (hasUpgrade("i", 33)) player.i.creatormods = player.i.creatormods.add(player.i.mods.mul(0.1).mul(delta)) //Trees, Leaves, and Points
+        if (hasUpgrade("i", 33)) player.i.highmods = player.i.highmods.add(player.i.mods.mul(0.1).mul(delta)) //Lines of Code
+        if (hasUpgrade("i", 33)) player.i.deathmods = player.i.deathmods.add(player.i.mods.mul(0.1).mul(delta)) //Mod Softcap
+        if (hasUpgrade("i", 33)) player.i.dimensionalmods = player.i.dimensionalmods.add(player.i.mods.mul(0.1).mul(delta)) //Crypto Dimensions
+        if (hasUpgrade("i", 33)) player.i.backroomsmods = player.i.backroomsmods.add(player.i.mods.mul(0.1).mul(delta)) //Crypto
+        if (hasUpgrade("i", 33)) player.i.voidmods = player.i.voidmods.add(player.i.mods.mul(0.1).mul(delta)) //Code Experience
+
+        player.i.totalrealmmods = player.i.creatormods.add(player.i.highmods.add(player.i.deathmods.add(player.i.dimensionalmods.add(player.i.backroomsmods.add(player.i.voidmods)))))
+
     },
     cryptoreset() {
         player.i.trees = new Decimal(0)
@@ -489,6 +500,7 @@
             tooltip() {
                 return "<h5>There is a border seperating the five other realms and the creator realm. It is called the fourth wall. Us from the other realms can break this wall with ease, but the meta-beings above can never do it. However, we cannot physically permeate this wall. We can only see through it."
             },
+            style: { "background-color": "#EC7063", }
         },
         28: {
             title() { return "Deposit ALL of your mods to the Higher Plane." },
@@ -501,6 +513,7 @@
             tooltip() {
                 return "<h5>The higher plane recruits new gods by making prophecies. These prophecies belong to chosen ones, who can go on amazing quests and then, become a god. Many heroes are created and they strive to protect the multiverse from evil forces."
             },
+            style: { "background-color": "#F5B041", }
         },
         29: {
             title() { return "Deposit ALL of your mods to the Death Realm." },
@@ -513,6 +526,7 @@
             tooltip() {
                 return "<h5>However, the devils are actually friends with the angels. They keep the whole realm stable, and make sure everyone is placed where they belong. They teamed up with the higher plane of existence to keep peace across the multiverse, but you know what happened next."
             },
+            style: { "background-color": "#F1C40F", }
         },
         30: {
             title() { return "Deposit ALL of your mods to the Dimensional Realm." },
@@ -525,6 +539,7 @@
             tooltip() {
                 return "<h5>It is said that pre-split entities still exist in inter-universal space called sentients. These entities can build universes using their own energy. Sentiental energy is REALLY POWERFUL. It can break the laws of physics and is SOMETHING TO NOT BE PLAYED AROUND WITH."
             },
+            style: { "background-color": "#27AE60", }
         },
         31: {
             title() { return "Deposit ALL of your mods to the Backrooms." },
@@ -537,6 +552,7 @@
             tooltip() {
                 return "<h5>People have been trying for years to find an exit to the backrooms. But there is only one way, but the person who escaped doesn't want to talk about it for some reason."
             },
+            style: { "background-color": "#2980B9", }
         },
         32: {
             title() { return "Deposit ALL of your mods to the Void." },
@@ -792,6 +808,16 @@
             effect() {
                 return player.i.leavespersecond.pow(0.3).add(1)
             },
+        },
+        33:
+        {
+            title: "QoL V",
+            unlocked() { return hasUpgrade("i", 32) },
+            description: "Gives 10% of realm mods per second.",
+            cost: new Decimal(1e65),
+            currencyLocation() { return player.i },
+            currencyDisplayName: "Code Experience",
+            currencyInternalName: "codeexperience",
         },
     },
     buyables: {
@@ -1710,7 +1736,7 @@
                     [
                         ["blank", "25px"],
                         ["raw-html", function () { return player.i.startcutscene.eq(0) ? "<h2>You have " + format(player.i.codeexperience) + "<h2> code experience. " : "" }],
-                        ["raw-html", function () { return player.i.startcutscene.eq(0) ? "<h2>Your code experience provides +" + format(player.i.codeexperienceeffect) + "<h2> extra accelerators. " : "" }],
+                        ["raw-html", function () { return player.i.startcutscene.eq(0) ? "<h2>Your code experience provides +" + format(player.i.codeexperienceeffect) + "<h2> extra accelerators. (Caps at 1500)" : "" }],
                         ["raw-html", function () { return player.i.startcutscene.eq(0) ? "<h2>You will gain " + format(player.i.codeexperiencetoget) + "<h2> on reset. " : "" }],
                         ["raw-html", function () { return player.i.startcutscene.eq(0) ? "<h3>Code experience gain is based on crypto. " : "" }],
                         ["blank", "25px"],
@@ -1718,7 +1744,7 @@
                         ["blank", "25px"],
                         ["raw-html", function () { return "<h1>Upgrades " }],
                         ["row", [["upgrade", 22], ["upgrade", 23], ["upgrade", 24], ["upgrade", 25], ["upgrade", 26], ["upgrade", 27]]],
-                        ["row", [["upgrade", 28], ["upgrade", 29], ["upgrade", 30], ["upgrade", 31], ["upgrade", 32]]],
+                        ["row", [["upgrade", 28], ["upgrade", 29], ["upgrade", 30], ["upgrade", 31], ["upgrade", 32], ["upgrade", 33]]],
                     ]
             },
             "Programs": {
@@ -1808,6 +1834,17 @@
                         ["row", [["clickable", 27], ["clickable", 28], ["clickable", 29], ["clickable", 30], ["clickable", 31], ["clickable", 32]]],
                         ["blank", "25px"],
                         ["row", [["clickable", 21], ["clickable", 22], ["clickable", 23], ["clickable", 24], ["clickable", 25], ["clickable", 26]]],
+                    ]
+            },
+            "Jacorbian Energy": {
+                buttonStyle() { return { 'color': '#BF40BF' } },
+                unlocked() { return hasUpgrade("i", 33) },
+                content:
+                    [
+                        ["blank", "25px"],
+                        ["raw-html", function () { return player.i.startcutscene.eq(0) ? "<h2>You have " + format(player.i.totalrealmmods) + "<h2> total realm mods. " : "" }],
+                        ["blank", "25px"],
+                        ["raw-html", function () { return "<h2>MORE COMING SOON!"}, { "color": "red", "font-size": "24px", "font-family": "monospace" }],
                     ]
             },
         },
