@@ -22,7 +22,7 @@ let changelog = `<h1>Changelog:</h1><br>
 		- Added trees.<br>
 		- Added crypto.<br>
 		- Added coding.<br>
-		Current Endgame: ~1e275 points.`
+		Current Endgame: Unlocked Jacorbian Energy. ~1e275 points.`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
