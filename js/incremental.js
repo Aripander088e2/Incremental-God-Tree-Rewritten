@@ -122,14 +122,14 @@
 
         let leavespersecond = new Decimal(0)
         leavespersecond = buyableEffect("i", 11)
-        if (hasUpgrade("i", 12)) leavespersecond = leavespersecond.mul(3)
+        if (hasUpgrade("i", 12)) leavespersecond = leavespersecond.mul(4)
         if (hasUpgrade("i", 15)) leavespersecond = leavespersecond.mul(upgradeEffect("i", 15))
         leavespersecond = leavespersecond.mul(buyableEffect("i", 20))
         leavespersecond = leavespersecond.mul(buyableEffect("i", 33))
         leavespersecond = leavespersecond.mul(player.i.creatormodseffect)
         player.i.treesoftcapstart = new Decimal(15)
         player.i.treesoftcapstart = player.i.treesoftcapstart.mul(buyableEffect("i", 13))
-        if (hasUpgrade("i", 14)) player.i.treesoftcapstart = player.i.treesoftcapstart.mul(2) 
+        if (hasUpgrade("i", 14)) player.i.treesoftcapstart = player.i.treesoftcapstart.mul(3) 
         player.i.treesoftcapstart = player.i.treesoftcapstart.mul(buyableEffect("i", 23))
         if (player.i.trees.gte(player.i.treesoftcapstart)) {
             player.i.treesoftcap = Decimal.pow(player.i.trees.add(1).sub(player.i.treesoftcapstart), 0.5)
@@ -150,6 +150,7 @@
         player.i.treegen = player.i.treegen.mul(buyableEffect("i", 20)) 
         player.i.treegen = player.i.treegen.mul(buyableEffect("i", 33)) 
         player.i.treegen = player.i.treegen.mul(player.i.creatormodseffect)
+        if (hasUpgrade("i", 32)) player.i.treegen = player.i.treegen.mul(upgradeEffect("i", 32))
 
         //crypto 
         player.i.cryptotoget = player.i.trees.div(10).pow(0.8)
@@ -201,6 +202,9 @@
 
         let effectsoftcapbase = new Decimal(500)
         player.i.codeexperiencetoget = player.i.crypto.pow(0.30).div(50)
+        player.i.codeexperiencetoget = player.i.codeexperiencetoget.mul(buyableEffect("i", 35)) 
+        player.i.codeexperiencetoget = player.i.codeexperiencetoget.mul(player.i.voidmodseffect) 
+
         if (player.i.codeexperience.lt(1e12)) player.i.codeexperienceeffect = player.i.codeexperience.pow(0.15).mul(8)
         if (player.i.codeexperience.gt(1e12)) player.i.codeexperienceeffect = effectsoftcapbase.add(player.i.codeexperience.sub(1e12).pow(0.05))
 
@@ -210,7 +214,9 @@
         player.i.programspersecond = player.i.programspersecond.mul(player.i.modseffect)
         player.i.programspersecond = player.i.programspersecond.mul(player.i.backroomsmodseffect)
 
-        player.i.programcryptoplier = player.i.programcryptoplieramount.pow(0.16).mul(2).mul(buyableEffect("i", 29))
+        let effectsoftcapbase2 = new Decimal(400)
+        if (player.i.programcryptoplieramount.lt(5.65e7)) player.i.programcryptoplier = player.i.programcryptoplieramount.pow(0.16).mul(2).mul(buyableEffect("i", 29))
+        if (player.i.programcryptoplieramount.gt(5.65e7)) player.i.programcryptoplier = effectsoftcapbase2.add(player.i.programcryptoplieramount.sub(5.65e7).pow(0.08))
         player.i.programtickspeed = player.i.programtickspeedamount.pow(0.15).mul(2).mul(buyableEffect("i", 29))
         player.i.programweakener = player.i.programweakeneramount.pow(0.14).mul(2).mul(buyableEffect("i", 29))
 
@@ -225,7 +231,7 @@
             player.i.mods = player.i.mods.add(player.i.modgen)
             player.i.linesofcode = new Decimal(0)
         }
-        player.i.modreq = player.i.mods.pow(1.5).add(20)
+        player.i.modreq = player.i.mods.pow(1.5).add(20).div(buyableEffect("i", 36))
 
         let linesofcodepersecond = new Decimal(0)
         linesofcodepersecond = buyableEffect("i", 31)
@@ -240,15 +246,16 @@
         player.i.linesofcodepersecond = linesofcodepersecond
 
         player.i.modgen = new Decimal(1)
+        player.i.modgen = player.i.modgen.mul(buyableEffect("i", 34))
 
         player.i.modseffect = player.i.mods.pow(0.3).mul(5).add(1)
 
-        player.i.creatormodseffect = player.i.creatormods.pow(1).add(1) //Trees, Leaves
-        player.i.highmodseffect = player.i.highmods.pow(0.25).add(1) //Lines of Code
-        player.i.deathmodseffect = player.i.deathmods.pow(1.1).add(1) //Points
-        player.i.dimensionalmodseffect = player.i.dimensionalmods.pow(0.4).add(1) //Crypto Dimensions
-        player.i.backroomsmodseffect = player.i.backroomsmods.pow(0.2).add(1) //Programs
-        player.i.voidmodseffect = player.i.voidmods.pow(0.3).add(1) //Mod Softcap
+        player.i.creatormodseffect = player.i.creatormods.pow(1.1).add(1) //Trees, Leaves
+        player.i.highmodseffect = player.i.highmods.pow(0.5).add(1) //Lines of Code
+        player.i.deathmodseffect = player.i.deathmods.pow(1.25).add(1) //Points
+        player.i.dimensionalmodseffect = player.i.dimensionalmods.pow(0.8).add(1) //Crypto Dimensions
+        player.i.backroomsmodseffect = player.i.backroomsmods.pow(0.3).add(1) //Programs
+        player.i.voidmodseffect = player.i.voidmods.pow(0.25).add(1) //Code Exp
     },
     cryptoreset() {
         player.i.trees = new Decimal(0)
@@ -550,7 +557,7 @@
         {
             title: "Points Booster",
             unlocked() { return player.i.crypto.gt(0) },
-            description: "x2 Point Generation.",
+            description: "x3 Point Generation.",
             cost: new Decimal(1),
             currencyLocation() { return player.i },
             currencyDisplayName: "Crypto",
@@ -560,7 +567,7 @@
         {
             title: "Leaves Booster",
             unlocked() { return player.i.crypto.gt(0) },
-            description: "x3 Leaf Generation.",
+            description: "x4 Leaf Generation.",
             cost: new Decimal(3),
             currencyLocation() { return player.i },
             currencyDisplayName: "Crypto",
@@ -580,7 +587,7 @@
         {
             title: "Softcap Booster",
             unlocked() { return player.i.crypto.gt(0) },
-            description: "Tree softcap starts 2x later.",
+            description: "Tree softcap starts 3x later.",
             cost: new Decimal(10),
             currencyLocation() { return player.i },
             currencyDisplayName: "Crypto",
@@ -762,6 +769,30 @@
             currencyDisplayName: "Code Experience",
             currencyInternalName: "codeexperience",
         },
+        31:
+        {
+            title: "More Buyables",
+            unlocked() { return hasUpgrade("i", 30) },
+            description: "Unlocks more mod buyables.",
+            cost: new Decimal(1e38),
+            currencyLocation() { return player.i },
+            currencyDisplayName: "Code Experience",
+            currencyInternalName: "codeexperience",
+        },
+        32:
+        {
+            title: "Inflate",
+            unlocked() { return hasUpgrade("i", 31) },
+            description: "Boost tree gain based on leaves per second.",
+            cost: new Decimal(1e45),
+            currencyLocation() { return player.i },
+            currencyDisplayName: "Code Experience",
+            currencyInternalName: "codeexperience",
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id)) + "x" },
+            effect() {
+                return player.i.leavespersecond.pow(0.3).add(1)
+            },
+        },
     },
     buyables: {
         11: {
@@ -793,7 +824,7 @@
         },
         12: {
             cost(x) { return new Decimal(1.3).pow(x || getBuyableAmount(this.layer, this.id)).mul(15) },
-            effect(x) { return new getBuyableAmount(this.layer, this.id).mul(0.5).add(1) },
+            effect(x) { return new getBuyableAmount(this.layer, this.id).add(1) },
             unlocked() { return player.i.startcutscene.eq(0) },
             canAfford() { return player.i.trees.gte(this.cost()) },
             title() {
@@ -820,7 +851,7 @@
         },
         13: {
             cost(x) { return new Decimal(1.5).pow(x || getBuyableAmount(this.layer, this.id)).mul(100) },
-            effect(x) { return new getBuyableAmount(this.layer, this.id).mul(0.1).add(1) },
+            effect(x) { return new getBuyableAmount(this.layer, this.id).mul(0.2).add(1) },
             unlocked() { return player.i.startcutscene.eq(0) },
             canAfford() { return player.points.gte(this.cost()) },
             title() {
@@ -847,7 +878,7 @@
         },
         14: {
             cost(x) { return new Decimal(1.4).pow(x || getBuyableAmount(this.layer, this.id)).mul(30) },
-            effect(x) { return new getBuyableAmount(this.layer, this.id).mul(0.2).add(1) },
+            effect(x) { return new getBuyableAmount(this.layer, this.id).mul(0.3).add(1) },
             unlocked() { return player.i.startcutscene.eq(0) },
             canAfford() { return player.i.trees.gte(this.cost()) },
             title() {
@@ -1361,14 +1392,14 @@
         },
         33: {
             cost(x) { return new Decimal(6).pow(x || getBuyableAmount(this.layer, this.id)).mul(1e25) },
-            effect(x) { return new getBuyableAmount(this.layer, this.id).pow(2).mul(400).add(1) },
+            effect(x) { return new getBuyableAmount(this.layer, this.id).pow(2.5).mul(400).add(1) },
             unlocked() { return true },
             canAfford() { return player.i.codeexperience.gte(this.cost()) },
             title() {
                 return format(getBuyableAmount(this.layer, this.id), 0) + "<br/> Moddist"
             },
             tooltip() {
-                return "<h5>Acamaeda stuidied incremental powers extensively like his ancestors had. However, he never had a mentor. Don't you notice the corruption of crypto? It's growing larger than points. This buyable should combat that."
+                return "<h5>Acamaeda stuidied incremental powers extensively like his ancestors had. However, he never had a mentor."
             },
             display() {
                 return "which are boosting leaf, tree and point gain by x" + format(tmp[this.layer].buyables[this.id].effect) + ".\n\
@@ -1381,6 +1412,87 @@
                     let max = Decimal.affordGeometricSeries(player.i.codeexperience, base, growth, getBuyableAmount(this.layer, this.id))
                     let cost = Decimal.sumGeometricSeries(max, base, growth, getBuyableAmount(this.layer, this.id))
                     player.i.codeexperience = player.i.codeexperience.sub(cost)
+                    setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(max))
+                }
+            }, 
+            style: { "background-color": "#BF40BF", width: '275px', height: '150px', }
+        },
+        34: {
+            cost(x) { return new Decimal(1.5).pow(x || getBuyableAmount(this.layer, this.id)).mul(10) },
+            effect(x) { return new getBuyableAmount(this.layer, this.id).mul(0.8).add(1) },
+            unlocked() { return hasUpgrade("i", 31) },
+            canAfford() { return player.i.mods.gte(this.cost()) },
+            title() {
+                return format(getBuyableAmount(this.layer, this.id), 0) + "<br/> Moddician"
+            },
+            tooltip() {
+                return "<h5>One day, Acamaeda was noticed by two of the four nobles. They wanted him to work on a machine that can replicate one of their creations."
+            },
+            display() {
+                return "which are boosting mod gain by x" + format(tmp[this.layer].buyables[this.id].effect) + ".\n\
+                    Cost: " + format(tmp[this.layer].buyables[this.id].cost) + " Mods"
+            },
+            buy() {
+                if (player.i.mods.gte(this.cost())) {
+                    let base = new Decimal(10)
+                    let growth = 1.5
+                    let max = Decimal.affordGeometricSeries(player.i.mods, base, growth, getBuyableAmount(this.layer, this.id))
+                    let cost = Decimal.sumGeometricSeries(max, base, growth, getBuyableAmount(this.layer, this.id))
+                    player.i.mods = player.i.mods.sub(cost)
+                    setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(max))
+                }
+            },
+            style: { "background-color": "#BF40BF", width: '275px', height: '150px', }
+        },
+        35: {
+            cost(x) { return new Decimal(1.6).pow(x || getBuyableAmount(this.layer, this.id)).mul(25) },
+            effect(x) { return new getBuyableAmount(this.layer, this.id).add(1) },
+            unlocked() { return hasUpgrade("i", 31) },
+            canAfford() { return player.i.mods.gte(this.cost()) },
+            title() {
+                return format(getBuyableAmount(this.layer, this.id), 0) + "<br/> Moddinger"
+            },
+            tooltip() {
+                return "<h5>The nobles' creation was called the prestige tree. It was a very legendary creation. It is said that the tree can split multiverses and release large bursts of energy."
+            },
+            display() {
+                return "which are boosting code experience gain by x" + format(tmp[this.layer].buyables[this.id].effect) + ".\n\
+                    Cost: " + format(tmp[this.layer].buyables[this.id].cost) + " Mods"
+            },
+            buy() {
+                if (player.i.mods.gte(this.cost())) {
+                    let base = new Decimal(25)
+                    let growth = 1.6
+                    let max = Decimal.affordGeometricSeries(player.i.mods, base, growth, getBuyableAmount(this.layer, this.id))
+                    let cost = Decimal.sumGeometricSeries(max, base, growth, getBuyableAmount(this.layer, this.id))
+                    player.i.mods = player.i.mods.sub(cost)
+                    setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(max))
+                }
+            },
+            style: { "background-color": "#BF40BF", width: '275px', height: '150px', }
+        },
+        36: {
+            cost(x) { return new Decimal(1.7).pow(x || getBuyableAmount(this.layer, this.id)).mul(75) },
+            effect(x) { return new getBuyableAmount(this.layer, this.id).mul(0.5).add(1) },
+            unlocked() { return hasUpgrade("i", 31) },
+            canAfford() { return player.i.mods.gte(this.cost()) },
+            title() {
+                return format(getBuyableAmount(this.layer, this.id), 0) + "<br/> Moddisa"
+            },
+            tooltip() {
+                return "<h5>But one day, the tree started wilting. It wasn't know why. The tree fell down to the ground once the nobles were exiled."
+            },
+            display() {
+                return "which are shortening mod requirement by /" + format(tmp[this.layer].buyables[this.id].effect) + ".\n\
+                    Cost: " + format(tmp[this.layer].buyables[this.id].cost) + " Mods"
+            },
+            buy() {
+                if (player.i.mods.gte(this.cost())) {
+                    let base = new Decimal(75)
+                    let growth = 1.7
+                    let max = Decimal.affordGeometricSeries(player.i.mods, base, growth, getBuyableAmount(this.layer, this.id))
+                    let cost = Decimal.sumGeometricSeries(max, base, growth, getBuyableAmount(this.layer, this.id))
+                    player.i.mods = player.i.mods.sub(cost)
                     setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(max))
                 }
             },
@@ -1605,8 +1717,8 @@
                         ["row", [["clickable", 15]]],
                         ["blank", "25px"],
                         ["raw-html", function () { return "<h1>Upgrades " }],
-                        ["row", [["upgrade", 22], ["upgrade", 23], ["upgrade", 24], ["upgrade", 25], ["upgrade", 26]]],
-                        ["row", [["upgrade", 27], ["upgrade", 28], ["upgrade", 29], ["upgrade", 30]]],
+                        ["row", [["upgrade", 22], ["upgrade", 23], ["upgrade", 24], ["upgrade", 25], ["upgrade", 26], ["upgrade", 27]]],
+                        ["row", [["upgrade", 28], ["upgrade", 29], ["upgrade", 30], ["upgrade", 31], ["upgrade", 32]]],
                     ]
             },
             "Programs": {
@@ -1644,6 +1756,7 @@
                         ["raw-html", function () { return player.i.modcutscene.eq(0) && player.i.mods.gte(player.i.modsoftcapstart) ? "After " + formatWhole(player.i.modsoftcapstart) + " mods, lines of code gain is divided by " + format(player.i.modsoftcap) + " (Based on mods)" : "" }, { "color": "red", "font-size": "16px", "font-family": "monospace" }],
                         ["blank", "25px"],
                         ["row", [["buyable", 31], ["buyable", 32], ["buyable", 33]]],
+                        ["row", [["buyable", 34], ["buyable", 35], ["buyable", 36]]],
                         ["raw-html", function () { return player.i.modscene.eq(1) ? "<h1>Hello! Red Diamond sent me here. We work together." : "" }, { "color": "#ff6f34", "font-size": "18px", "font-family": "monospace" }],
                         ["raw-html", function () { return player.i.modscene.eq(2) ? "<h1>Well I will introduce myself. My name is Acamaeda." : "" }, { "color": "#ff6f34", "font-size": "18px", "font-family": "monospace" }],
                         ["raw-html", function () { return player.i.modscene.eq(3) ? "<h1>I've been trying to set the nobles free for years now. They are my close friends." : "" }, { "color": "#ff6f34", "font-size": "18px", "font-family": "monospace" }],
@@ -1690,7 +1803,7 @@
                         //tv
                         ["raw-html", function () { return player.i.currentdisplay.eq(6) ? "<h2>You made " + format(player.i.voidmods, 0) + "<h2> shadow mods. " : "" }, { "color": "purple", "font-size": "24px", "font-family": "monospace" }],
                         ["raw-html", function () { return player.i.currentdisplay.eq(6) ? "Currently making mods powered by the VOID." : "" }, { "color": "purple", "font-size": "24px", "font-family": "monospace" }],
-                        ["raw-html", function () { return player.i.currentdisplay.eq(6) ? "<h2>Which are extending mod softcap by x" + format(player.i.voidmodseffect, 2) : "" }, { "color": "purple", "font-size": "16px", "font-family": "monospace" }],
+                        ["raw-html", function () { return player.i.currentdisplay.eq(6) ? "<h2>Which are boosting code experience by x" + format(player.i.voidmodseffect, 2) : "" }, { "color": "purple", "font-size": "16px", "font-family": "monospace" }],
                         ["blank", "25px"],
                         ["row", [["clickable", 27], ["clickable", 28], ["clickable", 29], ["clickable", 30], ["clickable", 31], ["clickable", 32]]],
                         ["blank", "25px"],

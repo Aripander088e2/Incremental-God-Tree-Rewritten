@@ -46,7 +46,7 @@ function getPointGen() {
 	gain = player.i.trees.mul(0.1)
 	gain = gain.mul(buyableEffect("i", 12))
 	gain = gain.mul(buyableEffect("i", 20))
-	if (hasUpgrade("i", 11)) gain = gain.mul(2)
+	if (hasUpgrade("i", 11)) gain = gain.mul(3)
 	gain = gain.mul(player.i.byteseffect)
 	if (hasUpgrade("i", 26)) gain = gain.mul(upgradeEffect("i", 26))
 	gain = gain.mul(buyableEffect("i", 33))
