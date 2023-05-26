@@ -13,14 +13,16 @@
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
-	name: "Literally nothing",
+	num: "1.0b",
+	name: "Beta Update 1 - The Start of a Rewrite",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.0</h3><br>
-		- Added things.<br>
-		- Added stuff.`
+	<h3>v1.0b</h3><br>
+		- Added trees.<br>
+		- Added crypto.<br>
+		- Added coding.<br>
+		Current Endgame: ~1e275 points.`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -65,9 +67,14 @@ function addedPlayerData() {
 // Display extra things at the top of the page
 var displayThings = [
 	function () {
-		let a = "Current endgame: idk yet lol"
+		let a = "Current endgame: Jacorbian Energy"
 
 		return a + (options.autosave ? "" : ". Warning: autosave is off")
+	},
+	function () {
+		let b =
+			"<h2><a href=https://docs.google.com/document/d/e/2PACX-1vStyIWqG9wAKNDGDKwxuUIr5WMgpkPzKBke2M2abvkP0evtbFbpFogcmB3olS_WwxN7D3au2HK5e9RG/pub>GUIDE HERE</a></h2>"
+		return b
 	},
 	function () {
 		let c =
