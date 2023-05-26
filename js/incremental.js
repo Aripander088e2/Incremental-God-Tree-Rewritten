@@ -1844,7 +1844,7 @@
                         ["blank", "25px"],
                         ["raw-html", function () { return player.i.startcutscene.eq(0) ? "<h2>You have " + format(player.i.totalrealmmods) + "<h2> total realm mods. " : "" }],
                         ["blank", "25px"],
-                        ["raw-html", function () { return "<h2>MORE COMING SOON!"}, { "color": "red", "font-size": "24px", "font-family": "monospace" }],
+                        ["raw-html", function () { return "<h2>MORE COMING SOON!" }, { "color": "red", "font-size": "24px", "font-family": "monospace" }],
                     ]
             },
         },
