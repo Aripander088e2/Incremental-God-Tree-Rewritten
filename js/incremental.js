@@ -567,6 +567,30 @@
             },
             style: { "background-color": "#9B59B6", }
         },
+        33: {
+            title() { return "<img src='resources/backarrow.png'style='width:calc(80%);height:calc(80%);margin:10%'></img>" },
+            canClick() { return player.i.startcutscene.eq(1) },
+            unlocked() { return player.i.startscene.neq(40) && player.i.startscene.neq(0) },
+            onClick() {
+                player.i.startscene = player.i.startscene.sub(1)
+            },
+        },
+        34: {
+            title() { return "<img src='resources/backarrow.png'style='width:calc(80%);height:calc(80%);margin:10%'></img>" },
+            canClick() { return player.i.codecutscene.eq(1) },
+            unlocked() { return player.i.codescene.neq(23) && player.i.codescene.neq(0) },
+            onClick() {
+                player.i.codescene = player.i.codescene.sub(1)
+            },
+        },
+        35: {
+            title() { return "<img src='resources/backarrow.png'style='width:calc(80%);height:calc(80%);margin:10%'></img>" },
+            canClick() { return player.i.modcutscene.eq(1) },
+            unlocked() { return player.i.modscene.neq(12) && player.i.modscene.neq(0) },
+            onClick() {
+                player.i.modscene = player.i.modscene.sub(1)
+            },
+        },
     },
     upgrades: {
         11:
@@ -1624,7 +1648,7 @@
                         ["raw-html", function () { return player.i.startscene.eq(38) ? "<h1> Music by Sweetlolipop " : "" }, { "color": "white", "font-size": "32px", "font-family": "monospace" }],
                         ["raw-html", function () { return player.i.startscene.eq(39) ? "<h1> Chapter 1: The path of singularity " : "" }, { "color": "white", "font-size": "32px", "font-family": "monospace" }],
                         ["blank", "50px"],
-                        ["row", [["clickable", 11]]],
+                        ["row", [["clickable", 33], ["clickable", 11]]],
                     ]
 
             },
