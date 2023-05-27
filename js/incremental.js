@@ -1749,7 +1749,7 @@
                         ["raw-html", function () { return player.i.codescene.eq(21) ? "<h1>This power is great. You can even harness power from the realms." : "" }, { "color": "red", "font-size": "18px", "font-family": "monospace" }],
                         ["raw-html", function () { return player.i.codescene.eq(22) ? "<h1>Keep going. I will see you soon." : "" }, { "color": "red", "font-size": "18px", "font-family": "monospace" }],
                         ["blank", "50px"],
-                        ["row", [["clickable", 14]]],
+                        ["row", [["clickable", 34], ["clickable", 14]]],
                     ]
 
             },
@@ -1820,7 +1820,7 @@
                         ["raw-html", function () { return player.i.modscene.eq(11) ? "<h1>Take this hard drive. It contains your piece of power." : "" }, { "color": "#ff6f34", "font-size": "18px", "font-family": "monospace" }],
                         ["blank", "25px"],
                         ["raw-html", function () { return player.i.modcutscene.eq(1) ? "<img src='resources/themoddingtree.png'style='width:calc(20%);height:calc(20%)'></img>" : "" }],
-                        ["row", [["clickable", 20]]],
+                        ["row", [["clickable", 35], ["clickable", 20]]],
                     ]
             },
             "Realm Mods": {
