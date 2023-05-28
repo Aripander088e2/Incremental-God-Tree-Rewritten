@@ -201,7 +201,7 @@
         }
 
         let effectsoftcapbase = new Decimal(500)
-        player.i.codeexperiencetoget = player.i.crypto.pow(0.30).div(50)
+        player.i.codeexperiencetoget = player.i.crypto.pow(0.70).div(5)
         player.i.codeexperiencetoget = player.i.codeexperiencetoget.mul(buyableEffect("i", 35)) 
         player.i.codeexperiencetoget = player.i.codeexperiencetoget.mul(player.i.voidmodseffect) 
 
