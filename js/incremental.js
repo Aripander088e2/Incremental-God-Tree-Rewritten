@@ -153,7 +153,7 @@
         if (hasUpgrade("i", 32)) player.i.treegen = player.i.treegen.mul(upgradeEffect("i", 32))
 
         //crypto 
-        player.i.cryptotoget = player.i.trees.div(10).pow(0.8)
+        player.i.cryptotoget = player.i.trees.div(6).pow(0.95)
         player.i.cryptotoget = player.i.cryptotoget.mul(buyableEffect("i", 21))
         if (hasUpgrade("i", 17)) player.i.cryptotoget = player.i.cryptotoget.mul(upgradeEffect("i", 17))
         player.i.cryptotoget = player.i.cryptotoget.mul(buyableEffect("i", 26))
@@ -171,7 +171,7 @@
         cryptodimbooster = cryptodimbooster.mul(buyableEffect("i", 25))
         cryptodimbooster = cryptodimbooster.mul(player.i.dimensionalmodseffect)
 
-        player.i.cryptodimsoftcapstart = new Decimal(1e15)
+        player.i.cryptodimsoftcapstart = new Decimal(1e45)
         player.i.cryptodimsoftcapstart = player.i.cryptodimsoftcapstart.mul(buyableEffect("i", 32))
         if (player.i.bytes.gte(player.i.cryptodimsoftcapstart)) {
             player.i.cryptodimsoftcap = Decimal.pow(player.i.bytes.add(1).sub(player.i.cryptodimsoftcapstart), 0.2)
