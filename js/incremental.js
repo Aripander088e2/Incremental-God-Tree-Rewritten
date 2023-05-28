@@ -153,7 +153,7 @@
         if (hasUpgrade("i", 32)) player.i.treegen = player.i.treegen.mul(upgradeEffect("i", 32))
 
         //crypto 
-        player.i.cryptotoget = player.i.trees.div(0.8).pow(1.05)
+        player.i.cryptotoget = player.i.trees.div(1.2).pow(1.15)
         player.i.cryptotoget = player.i.cryptotoget.mul(buyableEffect("i", 21))
         if (hasUpgrade("i", 17)) player.i.cryptotoget = player.i.cryptotoget.mul(upgradeEffect("i", 17))
         player.i.cryptotoget = player.i.cryptotoget.mul(buyableEffect("i", 26))
